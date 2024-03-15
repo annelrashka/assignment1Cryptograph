@@ -9,7 +9,7 @@ class PlayfairCipher {
     }
 
     generateMatrix() {
-        const alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ"; // Skip 'J' (Playfair Cipher rules)
+        const alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ"; // Skip 'J' 
         let matrix = [];
 
         // Initialize matrix
@@ -23,7 +23,6 @@ class PlayfairCipher {
         let keyIndex = 0;
         let keySet = new Set();
 
-        // Fill matrix with key
         for (let i = 0; i < 5; i++) {
             for (let j = 0; j < 5; j++) {
                 if (keyIndex < this.key.length) {
@@ -34,7 +33,7 @@ class PlayfairCipher {
                         matrix[i][j] = this.key[keyIndex];
                         keySet.add(this.key[keyIndex]);
                     } else {
-                        j--; // Skip duplicate letters
+                        j--; 
                     }
                     keyIndex++;
                 } else {

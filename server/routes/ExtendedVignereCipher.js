@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 
+
 class ExtendedVigenereCipher {
     constructor(key) {
         this.key = key;
@@ -56,3 +57,4 @@ router.post('/decrypt', (req, res) => {
 });
 
 module.exports = router;
+module.exports = ExtendedVigenereCipher;

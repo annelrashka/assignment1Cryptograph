@@ -28,6 +28,7 @@ app.use("/vignere", require("./routes/VignereCipher"));
 app.use("/extendedvignere", require("./routes/ExtendedVignereCipher"));
 app.use("/playfair", require("./routes/PlayFairCipher"));
 app.use("/product", require("./routes/ProductCipher"));
+app.use("/rc4", require("./routes/ModifiedRC4"));
 
 
 app.listen(port, () => {

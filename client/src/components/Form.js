@@ -81,7 +81,25 @@ function Form () {
                 setIsEncrypt(true);
                 setIsDecrypt(false);
                 setLoading(false);
-                
+
+            } catch (error) {
+                console.error('Error:', error);
+                console.log(key, plaintext);
+                setLoading(false);
+            }
+
+        }else if (method === 'Modified RC4 Cipher') {
+            try {
+                setLoading(true);
+                const response = await axios.post('/rc4/encrypt', {
+                    key: key,
+                    plaintext: plaintext
+                });
+                setEncryptedData(response.data.encryptedText);
+                setIsEncrypt(true);
+                setIsDecrypt(false);
+                setLoading(false);
+
             } catch (error) {
                 console.error('Error:', error);
                 console.log(key, plaintext);
@@ -158,6 +176,22 @@ function Form () {
                 setLoading(false);
             }
 
+        } else if (method === 'Modified RC4 Cipher') {
+            try {
+                setLoading(true);
+                const response = await axios.post('/rc4/decrypt', {
+                    key: key,
+                    ciphertext: plaintext
+                });
+                setEncryptedData(response.data.decryptedText);
+                setIsEncrypt(false);
+                setIsDecrypt(true);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error:', error);
+                setLoading(false);
+            }
+
         }
         else {
             console.log('Method not supported yet');
@@ -179,6 +213,7 @@ function Form () {
                     <option value="Extended Vigenere Cipher">Extended Vigenere Cipher</option>
                     <option value="Playfair Cipher">Playfair Cipher</option>
                     <option value="Product Cipher">Product Cipher</option>
+                    <option value="Modified RC4 Cipher">Modified RC4 Cipher</option>
                 </Select>
             </div>
             <div className="max-w-md">
@@ -205,8 +240,8 @@ function Form () {
                 <Button onClick={handleDecrypt} disabled={loading}>
                     {loading ? 'Loading...' : (
                         <>
-              <Decrypt className="mr-2 h-5 w-5" />
-                    Decrypt
+                            <Decrypt className="mr-2 h-5 w-5" />
+                            Decrypt
                         </>
                     )}
                 </Button>
